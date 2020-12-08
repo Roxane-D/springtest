@@ -7,7 +7,9 @@ import com.springtest.springtest.model.Player;
 public interface PlayerDao {
     List<Player> findAll();
 
-    Player PlayerById(int id);
+    Player findById(int id);
 
-    Player PlayerSave(Player player);
+    Player save(Player player);
+
+    Player update(int id, Player player);
 }

@@ -22,7 +22,7 @@ public class PlayerDaoImpl implements PlayerDao {
     }
 
     @Override
-    public Player PlayerById(int id) {
+    public Player findById(int id) {
         for (Player player : players) {
             if (player.getId() == id) {
                 return player;
@@ -32,8 +32,13 @@ public class PlayerDaoImpl implements PlayerDao {
     }
 
     @Override
-    public Player PlayerSave(Player player) {
+    public Player save(Player player) {
         players.add(player);
         return player;
+    }
+
+    @Override
+    public Player update(int id, Player player) {
+        return null;
     }
 }
