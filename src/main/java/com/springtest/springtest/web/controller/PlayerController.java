@@ -1,5 +1,6 @@
 package com.springtest.springtest.web.controller;
 
+import com.springtest.springtest.model.Player;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -9,9 +10,8 @@ public class PlayerController {
         return "Une bien belle liste";
     }
 
-//    @RequestMapping(value = "/Players/{id}", method = RequestMethod.GET)
     @GetMapping(value = "Players/{id}")
-    public String PlayerDisplay(@PathVariable int id) {
-        return "Un joueur " + id;
+    public Player PlayerDisplay(@PathVariable int id) {
+        return new Player(id, "Sam", "Hobbit");
     }
 }
