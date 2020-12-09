@@ -11,5 +11,5 @@ public interface PlayerDao {
 
     Player save(Player player);
 
-    Player update(int id, Player player);
+    boolean delete(int id);
 }

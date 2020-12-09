@@ -19,17 +19,22 @@ public class PlayerController {
     }
 
     @GetMapping(value = "Players/{id}")
-    public Player PlayerDisplay(@PathVariable int id) {
+    public Player Index(@PathVariable int id) {
         return playerDao.findById(id);
     }
 
     @PostMapping(value = "/Players")
-    public void AddPlayer(@RequestBody Player player) {
+    public void Create(@RequestBody Player player) {
         playerDao.save(player);
     }
 
     @PutMapping(value = "Players/{id}")
-    public void UpdatePlayer(@PathVariable int id, @RequestBody Player player) {
-        playerDao.update(id, player);
+    public void Update(@RequestBody Player player) {
+        playerDao.save(player);
+    }
+
+    @DeleteMapping(value = "Players/{id}")
+    public void Delete(@PathVariable int id) {
+        playerDao.delete(id);
     }
 }
