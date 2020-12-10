@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class PlayerDaoImpl implements PlayerDao {
@@ -23,28 +24,38 @@ public class PlayerDaoImpl implements PlayerDao {
     }
 
     @Override
-    public Player findById(int id) {
+    public Optional<Player> findById(int id) {
         for (Player player : players) {
-            if (player.getId() == id) {
-                return player;
-            }
+            if (player.getId() == id) return Optional.of(player);
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override
     public Player save(Player player) {
-        Player playerToEdit = findById(player.getId());
-        if (playerToEdit != null) {
-            players.set(players.indexOf(playerToEdit), player);
-            return player;
-        }
         players.add(player);
         return player;
     }
 
     @Override
+    public int update(Player player) {
+        return findById(player.getId()).map(player1 -> {
+            int playerUpdate = players.indexOf(player1);
+            if (playerUpdate >= 0) {
+                players.set(playerUpdate, new Player(player.getId(), player.getName(), player.getType()));
+                return 1;
+            }
+            return 0;
+        })
+                .orElse(0);
+    }
+
+    @Override
     public boolean delete(int id) {
-        return players.removeIf( player -> String.valueOf(player.getId()).equals(String.valueOf(id)));
+        return players.removeIf(
+                player -> String.valueOf(
+                        player.getId()
+                )
+                        .equals(String.valueOf(id)));
     }
 }

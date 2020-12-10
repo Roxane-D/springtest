@@ -8,7 +8,7 @@ public class Player {
     /*
      * CONSTRUCTORS
      */
-    public Player() {
+    public Player(int id) {
     }
 
     public Player(int id, String name, String type) {
