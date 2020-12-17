@@ -1,46 +1,39 @@
 package com.springtest.springtest.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "player")
+
 public class Player {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String name;
-    private String type;
 
-    /*
-     * CONSTRUCTORS
-     */
-    public Player(int id) {
-    }
-
-    public Player(int id, String name, String type) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-    }
-
-    /*
-     * GETTERS
-     */
     public int getId() {
         return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(nullable = false)
+    private String name;
 
     public String getName() {
         return name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    /*
-     * SETTERS
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Column(nullable = false)
+    private String type;
+
+    public String getType() {
+        return type;
     }
 
     public void setType(String type) {
